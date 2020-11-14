@@ -4,20 +4,20 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    
     {
       "type": "java",
       "name": "Debug (Launch) - Current File",
       "request": "launch",
       "mainClass": "${file}",
       "console": "integratedTerminal"
-
     },
     {
       "type": "java",
-      "name": "Debug (Launch)-janela<EmpresaProjeto_a61c8070>",
+      "name": "Debug (Launch)-window<ImpostoEstado_d4f42b9b>",
       "request": "launch",
-      "mainClass": "janela",
-      "projectName": "EmpresaProjeto_a61c8070",
+      "mainClass": "window",
+      "projectName": "ImpostoEstado_d4f42b9b",
       "console": "integratedTerminal"
     }
   ]
