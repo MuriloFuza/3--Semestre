@@ -4,7 +4,7 @@ import interfaces.Estado;
 
 public class ipva implements Estado {
   String placaCarro;
-  Character marcaCarro;
+  String marcaCarro;
   Double valorAnual;
 
   public ipva(){
@@ -13,7 +13,7 @@ public class ipva implements Estado {
     this.valorAnual = 0.0;
   }
 
-  public ipva(String placa, Character marca, Double valorA){
+  public ipva(String placa, String marca, Double valorA){
     this.placaCarro = placa;
     this.marcaCarro = marca;
     this.valorAnual = valorA;
@@ -26,10 +26,10 @@ public class ipva implements Estado {
     this.placaCarro = placaCarro;
   }
 
-  public Character getMarcaCarro() {
+  public String getMarcaCarro() {
     return this.marcaCarro;
   }
-  public void setMarcaCarro(Character marcaCarro) {
+  public void setMarcaCarro(String marcaCarro) {
     this.marcaCarro = marcaCarro;
   }
 
@@ -42,7 +42,7 @@ public class ipva implements Estado {
 
   @Override
   public String toString() {
-    return String.format("\n\nPlaca: %s\nMarca: %c\nValor Anual: %,.2f",this.placaCarro,this.marcaCarro,this.valorAnual);
+    return String.format("Placa: %s\nMarca: %c\nValor Anual: %,.2f",this.placaCarro,this.marcaCarro,this.arrecadaImpostos());
   }
 
   @Override

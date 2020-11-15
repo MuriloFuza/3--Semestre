@@ -31,7 +31,8 @@ public abstract class Contribuinte {
 
   @Override
   public String toString() {
-    return String.format("\n\nNome: %s\nRenda Bruta Anual: R$%,.2f",this.getNome(),this.getRendaBrutaAnual());
+    return String.format("Nome: %s\nRenda Bruta Anual: R$%,.2f",this.getNome(),
+    this.getRendaBrutaAnual());
   }
 }
 

@@ -45,7 +45,7 @@ public class Fisica extends Contribuinte implements Estado{
   @Override
   public String toString() {
     return super.toString()+String.format(
-      "\nCPF: %s"+
+      "CPF: %s"+
       "\nGasto com Saude: R$%,.2f"+
       "\nGasto com Educacao: R$%,.2f",
       this.CPF,this.gastoSaude,this.gastoEducacao);
@@ -53,7 +53,8 @@ public class Fisica extends Contribuinte implements Estado{
 
   @Override
   public Double arrecadaImpostos() {
-    Double imposto = (this.getRendaBrutaAnual() - this.gastoSaude - this.gastoEducacao);
+    Double imposto = (this.getRendaBrutaAnual() - this.gastoSaude - 
+    this.gastoEducacao);
     return imposto;
   }
 }

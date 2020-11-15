@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
 
 public class Field extends JComponent {
   private static final long serialVersionUID = 1L;
@@ -15,7 +14,6 @@ public class Field extends JComponent {
     setLayout(new GridLayout(1, 2));
     label = new JLabel(tlabel);
     textField = new JTextField(tSize);
-    textField.setFont(new Font("Arial",Font.BOLD,14));
     add(label);
     add(textField);
   }
