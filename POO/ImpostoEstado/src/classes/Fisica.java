@@ -45,7 +45,7 @@ public class Fisica extends Contribuinte implements Estado{
   @Override
   public String toString() {
     return super.toString()+String.format(
-      "CPF: %s"+
+      "\nCPF: %s"+
       "\nGasto com Saude: R$%,.2f"+
       "\nGasto com Educacao: R$%,.2f",
       this.CPF,this.gastoSaude,this.gastoEducacao);

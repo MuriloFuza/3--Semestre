@@ -45,7 +45,7 @@ public class Juridica extends Contribuinte implements Estado{
   @Override
   public String toString() {
     return super.toString()+String.format(
-      "CGC: %s"+
+      "\nCGC: %s"+
       "\nGasto pessoal: R$%,.2f"+
       "\nGasto com equipamento: R$%,.2f",
       this.CGC,this.gastoPessoal,this.gastoEquipamento);

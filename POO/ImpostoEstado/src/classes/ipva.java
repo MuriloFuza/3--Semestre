@@ -42,19 +42,20 @@ public class ipva implements Estado {
 
   @Override
   public String toString() {
-    return String.format("Placa: %s\nMarca: %c\nValor Anual: %,.2f",this.placaCarro,this.marcaCarro,this.arrecadaImpostos());
+    return String.format("Placa: %s\nMarca: %s\nValor Anual: %,.2f",this.placaCarro,this.marcaCarro,this.arrecadaImpostos());
   }
 
   @Override
   public Double arrecadaImpostos() {
     double imposto = 0;
-    if(getMarcaCarro().equals("W")){
+    String marca = this.marcaCarro.toUpperCase();
+    if(marca.equals("W")){
       imposto = 1000.00;
-    }else if(getMarcaCarro().equals("G")){
+    }else if(marca.equals("G")){
       imposto = 1200.00;
-    }else if(getMarcaCarro().equals("F")){
+    }else if(marca.equals("F")){
       imposto = 900.00;
-    }else{
+    }else if(marca.equals("O")){
       imposto = 1500.00;
     }
     return imposto;
