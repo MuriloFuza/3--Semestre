@@ -47,14 +47,18 @@ public class Fisica extends Contribuinte implements Estado{
     return super.toString()+String.format(
       "\nCPF: %s"+
       "\nGasto com Saude: R$%,.2f"+
-      "\nGasto com Educacao: R$%,.2f",
-      this.CPF,this.gastoSaude,this.gastoEducacao);
+      "\nGasto com Educacao: R$%,.2f"+
+      "\nImposto de renda: R$%,.2f",
+      this.CPF,this.gastoSaude,this.gastoEducacao,this.arrecadaImpostos());
   }
 
   @Override
   public Double arrecadaImpostos() {
     Double imposto = (this.getRendaBrutaAnual() - this.gastoSaude - 
     this.gastoEducacao);
+    if(imposto <= 0){
+      imposto = 0.0;
+    }
     return imposto;
   }
 }

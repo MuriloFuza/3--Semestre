@@ -180,7 +180,10 @@ public class window extends JFrame {
         } else {
           saida += "\nIMPOSTO COLETADO\n";
           for (Estado x : lista) {
-            total += x.arrecadaImpostos();
+            if(x.arrecadaImpostos() < 0){
+            }else{
+              total +=  x.arrecadaImpostos();
+            }
           }
           saida += "R$ " + total + " reais arrecadados!\n\n";
           saida += "PESSOAL FISICA\n\n";
@@ -285,21 +288,41 @@ public class window extends JFrame {
               JOptionPane.showMessageDialog(null, saida, titulo, 
               JOptionPane.PLAIN_MESSAGE);
             }
-            if (nome.getValue().equals("") | rendaBrutaAnual.getValue().equals("") 
-            | cpf.getValue().equals("")
-                | gastoS.getValue().equals("") | gastoE.getValue().equals("")) {
-            } else {
-              Fisica f = new Fisica(nomeF, rendaBrutaAual, cpfF, gastoSaude, 
-              gastoEducacao);
-              lista.add(f);
-              JOptionPane.showMessageDialog(null, "Pessoa Fisica Inserida com"
-               + "sucesso");
-
-              nome.resetValue();
+            
+            Boolean nega = false;
+            if( rendaBrutaAual < 0 ){
               rendaBrutaAnual.resetValue();
-              cpf.resetValue();
-              gastoS.resetValue();
+              nega = true;
+            }
+            if( gastoEducacao < 0 ){
               gastoE.resetValue();
+              nega = true;
+            }
+            if( gastoSaude < 0 ){
+              gastoS.resetValue();
+              nega = true;
+            }
+
+            if(nega){
+              JOptionPane.showMessageDialog(null, "Valores negativos são "+
+              "proibidos");
+            }else{
+              if (nome.getValue().equals("") | rendaBrutaAnual.getValue().equals("") 
+              | cpf.getValue().equals("")
+                  | gastoS.getValue().equals("") | gastoE.getValue().equals("")) {
+              } else {
+                Fisica f = new Fisica(nomeF, rendaBrutaAual, cpfF, gastoSaude, 
+                gastoEducacao);
+                lista.add(f);
+                JOptionPane.showMessageDialog(null, "Pessoa Fisica Inserida com"
+                 + "sucesso");
+  
+                nome.resetValue();
+                rendaBrutaAnual.resetValue();
+                cpf.resetValue();
+                gastoS.resetValue();
+                gastoE.resetValue();
+                }        
             }
           }
         }
@@ -377,6 +400,24 @@ public class window extends JFrame {
               saida = "ERRO - Preencha corretamente \no sua Renda bruta anual!";
               JOptionPane.showMessageDialog(null, saida, titulo, 
               JOptionPane.PLAIN_MESSAGE);
+            }
+            Boolean nega = false;
+            if( rendaBrutaAual < 0 ){
+              rendaBrutaAnual.resetValue();
+              nega = true;
+            }
+            if( gastoEquipamento < 0 ){
+              gastoEq.resetValue();
+              nega = true;
+            }
+            if( gastoPessoal < 0 ){
+              gastoP.resetValue();
+              nega = true;
+            }
+
+            if(nega){
+              JOptionPane.showMessageDialog(null, "Valores negativos são "+
+              "proibidos");
             }
 
             if (nome.getValue().equals("") | rendaBrutaAnual.getValue().equals("")
