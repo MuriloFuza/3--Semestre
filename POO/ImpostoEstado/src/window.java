@@ -6,7 +6,7 @@
 * POO Project - Tax collection
 *
 * Compiler: openjdk 14.0.2 2020-07-14
-* Operacional System: Manjaro - Kernel: Linux 5.4.74-1-MANJARO
+* Operacional System: Manjaro - Kernel: Linux 5.4.77-1-MANJARO
 *
 * Use the code at will, we just ask you to reference us the creators in their 
 * academic work
