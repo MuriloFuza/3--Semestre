@@ -19,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import br.com.caelum.stella.format.CNPJFormatter;
+import br.com.caelum.stella.format.CPFFormatter;
+
 import java.util.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -32,6 +35,7 @@ import javax.swing.JOptionPane;
 import components.*;
 import interfaces.Estado;
 import classes.*;
+
 
 public class window extends JFrame {
   /**
@@ -103,6 +107,11 @@ public class window extends JFrame {
 
     eventosLimpar funcL = new eventosLimpar();
     limparAll.addActionListener(funcL);
+
+    JOptionPane.showMessageDialog(null, "Apenas CPF e CGC com tamanho"+
+    " valido serao aceitos\nCPF: 11 elementos\nCGC: 14 elementos\n\nMarcadas de"+
+    " carro validas:\n W - Volks | G - Gm | F - Fiat | O - Outros", "Atencao", 
+    JOptionPane.PLAIN_MESSAGE);
   }
 
   private class eventosLimpar implements ActionListener {
@@ -218,6 +227,7 @@ public class window extends JFrame {
     }
   }
 
+
   private class criaPainelF extends JPanel {
     /**
      *
@@ -251,15 +261,22 @@ public class window extends JFrame {
           gastoEF = gastoE.getValue();
           rendaBA = rendaBrutaAnual.getValue();
           nomeF = nome.getValue();
+          Boolean nega = false;
 
           if (nome.getValue().equals("") | rendaBrutaAnual.getValue().equals("") 
           | cpf.getValue().equals("")
-              | gastoS.getValue().equals("") | gastoE.getValue().equals("")) {
+          | gastoS.getValue().equals("") | gastoE.getValue().equals("") 
+          | cpfF.length()<11){
             titulo = "ERRO";
-            saida = "ERRO - Preencha todos os campos!";
+            saida = "ERRO - Preencha todos os campos corretamente!";
             JOptionPane.showMessageDialog(null, saida, titulo, 
             JOptionPane.PLAIN_MESSAGE);
           } else {
+
+            CPFFormatter formatter = new CPFFormatter();
+            String unformatedValue = cpfF;
+            String cpfFormatado = formatter.format(unformatedValue);
+
             try {
               gastoSaude = Double.parseDouble(gastoSF);
             } catch (Exception e) {
@@ -289,7 +306,7 @@ public class window extends JFrame {
               JOptionPane.PLAIN_MESSAGE);
             }
             
-            Boolean nega = false;
+           
             if( rendaBrutaAual < 0 ){
               rendaBrutaAnual.resetValue();
               nega = true;
@@ -311,8 +328,8 @@ public class window extends JFrame {
               | cpf.getValue().equals("")
                   | gastoS.getValue().equals("") | gastoE.getValue().equals("")) {
               } else {
-                Fisica f = new Fisica(nomeF, rendaBrutaAual, cpfF, gastoSaude, 
-                gastoEducacao);
+                Fisica f = new Fisica(nomeF, rendaBrutaAual, cpfFormatado, 
+                gastoSaude, gastoEducacao);
                 lista.add(f);
                 JOptionPane.showMessageDialog(null, "Pessoa Fisica Inserida com"
                  + "sucesso");
@@ -363,15 +380,22 @@ public class window extends JFrame {
           gastoEqJ = gastoEq.getValue();
           rendaBA = rendaBrutaAnual.getValue();
           nomeJ = nome.getValue();
+          Boolean nega = false;
 
           if (nome.getValue().equals("") | rendaBrutaAnual.getValue().equals("") 
           | cgc.getValue().equals("")
-              | gastoP.getValue().equals("") | gastoEq.getValue().equals("")) {
+          | gastoP.getValue().equals("") | gastoEq.getValue().equals("") 
+          | cgcJ.length()<14) {
             titulo = "ERRO";
-            saida = "ERRO - Preencha todos os campos!";
+            saida = "ERRO - Preencha todos os campos corretamente!";
             JOptionPane.showMessageDialog(null, saida, titulo, 
             JOptionPane.PLAIN_MESSAGE);
           } else {
+
+          CNPJFormatter formatter = new CNPJFormatter();
+          String unformatedValue = cgcJ;
+          String cgcFormatado = formatter.format(unformatedValue);
+
             try {
               gastoPessoal = Double.parseDouble(gastoPJ);
             } catch (Exception e) {
@@ -401,7 +425,6 @@ public class window extends JFrame {
               JOptionPane.showMessageDialog(null, saida, titulo, 
               JOptionPane.PLAIN_MESSAGE);
             }
-            Boolean nega = false;
             if( rendaBrutaAual < 0 ){
               rendaBrutaAnual.resetValue();
               nega = true;
@@ -424,7 +447,7 @@ public class window extends JFrame {
             | cgc.getValue().equals("")
                 | gastoP.getValue().equals("") | gastoEq.getValue().equals("")) {
             } else {
-              Juridica j = new Juridica(nomeJ, rendaBrutaAual, cgcJ,
+              Juridica j = new Juridica(nomeJ, rendaBrutaAual, cgcFormatado,
               gastoPessoal, gastoEquipamento);
               lista.add(j);
               JOptionPane.showMessageDialog(null, "Pessoa Juridica Inserida com"
