@@ -14,10 +14,12 @@
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.format.CPFFormatter;
@@ -48,7 +50,7 @@ public class window extends JFrame {
   limparAll;
   private JDesktopPane aJanela;
   private ArrayList<Estado> lista = new ArrayList<Estado>();
-  private JPanel fisica, juridica, ipva, painelf, painelj, paineli;
+  private JPanel fisica, juridica, ipva, painelf, painelj, paineli, atencao;
   public Field nome, rendaBrutaAnual, cpf, gastoS, gastoE, cgc, gastoP, 
   gastoEq, placa, marca;
   public JButton btInserirF, btInserirJ, btInserirIpva;
@@ -108,10 +110,20 @@ public class window extends JFrame {
     eventosLimpar funcL = new eventosLimpar();
     limparAll.addActionListener(funcL);
 
-    JOptionPane.showMessageDialog(null, "Apenas CPF e CGC com tamanho"+
-    " valido serao aceitos\nCPF: 11 elementos\nCGC: 14 elementos\n\nMarcadas de"+
-    " carro validas:\n W - Volks | G - Gm | F - Fiat | O - Outros", "Atencao", 
-    JOptionPane.PLAIN_MESSAGE);
+    atencao = new JPanel();
+    atencao.setLayout(new BoxLayout(atencao, BoxLayout.Y_AXIS));
+    JLabel aten1 = new JLabel("Apenas CPF e CGC com tamanho"+
+    " valido serao aceitos");
+    JLabel aten2 = new JLabel("CPF: 11 elementos");
+    JLabel aten3 = new JLabel("CGC: 14 elementos");
+    JLabel aten4 = new JLabel("Marcadas de carro validas:");
+    JLabel aten5 = new JLabel("W - Volks | G - Gm | F - Fiat | O - Outros");
+    atencao.add(aten1);
+    atencao.add(aten2);
+    atencao.add(aten3);
+    atencao.add(aten4);
+    atencao.add(aten5);
+    add(atencao, BorderLayout.CENTER);
   }
 
   private class eventosLimpar implements ActionListener {
